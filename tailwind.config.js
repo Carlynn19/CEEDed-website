@@ -1,6 +1,5 @@
-﻿import type { Config } from 'tailwindcss'
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,36 +8,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Neutrals
         black: '#121212',
         charcoal: '#1E1E1E',
         bone: '#F5F2EC',
         offWhite: '#FAF8F3',
-        
-        // Text
         textDark: '#1A1A1A',
         textGrey: '#6F6F6F',
         borderGrey: '#D6D6D6',
-        
-        // Accent (using Electric Teal - can swap to Lime or Cobalt)
-        accent: '#00E5C4', // Electric Teal
-        accentLime: '#B6F300', // Electric Lime alternative
-        accentBlue: '#3B5BFF', // Cobalt Blue alternative
+        accent: '#00E5C4',
+        accentLime: '#B6F300',
+        accentBlue: '#3B5BFF',
       },
       animation: {
-        // Fade and slide animations
         fadeIn: 'fadeIn 0.6s ease-in-out',
         fadeInUp: 'fadeInUp 0.6s ease-out',
         fadeInDown: 'fadeInDown 0.6s ease-out',
         slideInLeft: 'slideInLeft 0.6s ease-out',
         slideInRight: 'slideInRight 0.6s ease-out',
-        
-        // Hover animations
         float: 'float 3s ease-in-out infinite',
         glow: 'glow 2s ease-in-out infinite',
         pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        
-        // Button animations
         bounce: 'bounce 1s infinite',
         ping: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
@@ -79,5 +68,3 @@ const config: Config = {
   },
   plugins: [],
 }
-
-export default config
