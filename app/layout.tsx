@@ -1,9 +1,9 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Your Digital Presence Agency',
-  description: 'Simple web design, booking systems, and hosting for small businesses.',
+  title: 'CEEDed — Simple systems for growing businesses',
+  description: 'A small digital studio helping service-based entrepreneurs bring structure to their businesses. Enquiry flows, booking, payments, and clarity—without the complexity.',
 }
 
 export const viewport = {

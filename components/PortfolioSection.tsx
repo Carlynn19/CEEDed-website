@@ -83,7 +83,7 @@ export default function PortfolioSection() {
             Businesses We've Helped
           </h2>
           <p className="text-textGrey text-lg max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
-            Real challenges. Real solutions. Real impact.
+            Real challenges, real solutions—structure that makes the business easier to run.
           </p>
         </div>
 
