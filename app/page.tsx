@@ -87,6 +87,7 @@ export default function Home() {
               {[
                 { label: 'Our Mission', id: 'mission' },
                 { label: 'What We Do', id: 'services' },
+                
                 { label: 'Pricing', id: 'pricing' },
                 { label: 'Who We Serve', id: 'who-we-serve' },
                 { label: 'Contact', id: 'contact' }
