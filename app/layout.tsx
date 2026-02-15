@@ -4,8 +4,13 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Your Digital Presence Agency',
   description: 'Simple web design, booking systems, and hosting for small businesses.',
-  viewport: 'width=device-width, initial-scale=1',
 }
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 
 export default function RootLayout({
   children,
