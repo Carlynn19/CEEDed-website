@@ -4,15 +4,24 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Menu, X, ArrowRight, Instagram, Facebook, Mail } from 'lucide-react'
 
-export default function Home() {
+export default function Products() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Relatability cards
-  const relatabilityCards = [
-    'Everything lives in DMs',
-    'You\'re the admin system',
-    'Too many tools',
-    'No clear flow',
+
+  // Start Smaller cards
+  const startSmallerCards = [
+    {
+      title: 'ENQUIRY FLOW AUDIT',
+      description: 'We look at how you currently receive enquiries, identify gaps, and suggest quick wins to make it smoother.',
+    },
+    {
+      title: 'INTAKE FORM SETUP',
+      description: 'Stop manually asking clients the same 10 questions—get a branded form that captures what you need upfront.',
+    },
+    {
+      title: 'SIMPLE BOOKING LINK',
+      description: 'Let clients book directly via a calendar link. No back-and-forth. Just available slots and done.',
+    },
   ]
 
   return (
@@ -98,128 +107,94 @@ export default function Home() {
         )}
       </header>
 
-      {/* Hero Section */}
+      {/* Signature Offer Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #2a2c2e 0%, #3b3d3f 30%, #4a4d4f 60%, #3b3d3f 100%)' }}>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #a8b598 0%, transparent 50%), radial-gradient(circle at 80% 50%, #768760 0%, transparent 50%)' }}></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            {/* Left Side - Logo with Slogan */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start animate-fadeIn">
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-sageGreen to-oliveGreen rounded-lg opacity-20 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
-                <Image
-                  src="/logo_nobackground.png"
-                  alt="CEEDed - Simple systems for growing businesses"
-                  width={500}
-                  height={500}
-                  className="relative w-full max-w-md h-auto object-contain animate-float"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Right Side - Heading and Text */}
-            <div className="w-full lg:w-1/2">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-fadeInUp" style={{ color: '#e7e2da' }}>
-                Your business shouldn't feel this messy.
-              </h1>
-              <p className="text-xl sm:text-2xl mb-6 font-semibold animate-fadeInUp" style={{ color: '#a8b598', animationDelay: '0.1s' }}>
-                You've outgrown the chaos.
-              </p>
-              <p className="text-lg sm:text-xl mb-10 leading-relaxed animate-fadeInUp" style={{ color: '#d4c5a9', animationDelay: '0.2s' }}>
-                We help you replace scattered tools and constant admin with simple structure that just works.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
-                <a
-                  href="/contact"
-                  className="px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl text-center"
-                  style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
-                >
-                  Let's chat
-                </a>
-                <a
-                  href="/products"
-                  className="px-8 py-3 rounded font-semibold transition-all hover:scale-105 hover:bg-opacity-10 flex items-center justify-center gap-2"
-                  style={{ border: '2px solid #a8b598', color: '#a8b598', backgroundColor: 'rgba(168, 181, 152, 0.05)' }}
-                >
-                  See our products <ArrowRight size={20} />
-                </a>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto relative z-10 text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fadeInUp" style={{ color: '#e7e2da' }}>
+            CEEDed Signature Offer
+          </h1>
+          <p className="text-xl sm:text-2xl mb-8 leading-relaxed animate-fadeInUp" style={{ color: '#d4c5a9', animationDelay: '0.1s' }}>
+            Your complete digital foundation, designed to make your business run smoother behind the scenes.
+          </p>
+          <div className="text-left max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-2xl font-bold mb-6" style={{ color: '#a8b598' }}>What you get:</h2>
+            <ul className="space-y-4 text-lg" style={{ color: '#d4c5a9' }}>
+              <li className="flex items-start gap-3">
+                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+                <span>A full enquiry flow — from first contact to onboarding</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+                <span>Intake forms and automated booking</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+                <span>Payment links, invoicing, or basic client portals</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+                <span>Simple client management so nothing slips through the cracks</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+                <span>Integration of what you already use (where possible)</span>
+              </li>
+            </ul>
           </div>
+          <p className="text-xl mb-8 font-semibold animate-fadeInUp" style={{ color: '#e7e2da', animationDelay: '0.3s' }}>
+            This is designed for service-based businesses, consultants, and solo founders who need solid structure without the complexity.
+          </p>
+          <a
+            href="/contact"
+            className="inline-block px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl animate-fadeInUp"
+            style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e', animationDelay: '0.4s' }}
+          >
+            Learn more
+          </a>
         </div>
       </section>
 
-      {/* Relatability Strip */}
+      {/* Start Smaller Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center" style={{ color: '#e7e2da' }}>Sound familiar?</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatabilityCards.map((card, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-lg text-center transition-all hover:scale-105 animate-fadeIn"
-                style={{
-                  background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
-                  border: '2px solid #a8b598',
-                  animationDelay: `${index * 0.1}s`
-                }}
-              >
-                <p className="text-lg font-medium" style={{ color: '#e7e2da' }}>{card}</p>
-              </div>
-              
-            ))}
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl p-20 text-center leading-tight" style={{ color: '#e7e2da' }}>
-            If yes, let's get you{' '}
-            <a
-              href="/products"
-              className="transition-all hover:scale-105 inline-block"
-              style={{
-                background: 'linear-gradient(135deg, #a8b598 0%, #c5d1ba 50%, #768760 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textDecoration: 'underline',
-                textDecorationColor: '#a8b598'
-              }}
-            >
-              CEEDed
-            </a>
-          </h2>
-        </div>
-      </section>
-
-      {/* What We Do */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#e7e2da' }}>
-            What We Do
-          </h2>
-          <p className="text-lg sm:text-xl mb-12 leading-relaxed" style={{ color: '#d4c5a9' }}>
-            We design simple digital setups that help your business feel organised and professional.
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-center" style={{ color: '#e7e2da' }}>Start simple. Grow later.</h2>
+          <p className="text-lg sm:text-xl mb-12 text-center leading-relaxed max-w-3xl mx-auto" style={{ color: '#d4c5a9' }}>
+            Not ready for the full package? These standalone setups give you quick structure where you need it most.
           </p>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              'Enquiry flows',
-              'Booking setups',
-              'Payment integrations'
-            ].map((item, index) => (
+            {startSmallerCards.map((card, index) => (
               <div
                 key={index}
-                className="p-6 rounded-lg transition-all hover:translate-y-[-4px] animate-fadeInUp"
+                className="p-8 rounded-lg transition-all hover:translate-y-[-4px] animate-fadeInUp"
                 style={{
                   background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
                   border: '2px solid #a8b598',
                   animationDelay: `${index * 0.15}s`
                 }}
               >
-                <div className="flex items-center gap-3">
-                  <p className="text-lg font-medium" style={{ color: '#e7e2da' }}>{item}</p>
-                </div>
+                <h3 className="text-xl font-bold mb-4" style={{ color: '#a8b598' }}>{card.title}</h3>
+                <p className="text-base leading-relaxed" style={{ color: '#d4c5a9' }}>{card.description}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+
+      {/* Final CTA */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative" style={{ background: 'linear-gradient(90deg, #2a2c2e 0%, #3b3d3f 50%, #2a2c2e 100%)' }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: '#e7e2da' }}>
+            Let's build something simple. Something CEEDed.
+          </h2>
+          <a
+            href="/contact"
+            className="inline-block px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl"
+            style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
+          >
+            Start the conversation
+          </a>
         </div>
       </section>
 
@@ -246,9 +221,9 @@ export default function Home() {
       <footer className="text-center py-12 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #2a2c2e 0%, #1a1c1e 100%)', borderTop: '2px solid #a8b598' }}>
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(45deg, #a8b598 25%, transparent 25%, transparent 75%, #a8b598 75%), linear-gradient(45deg, #a8b598 25%, transparent 25%, transparent 75%, #a8b598 75%)', backgroundSize: '20px 20px', backgroundPosition: '0 0, 10px 10px' }}></div>
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <p className="font-semibold mb-2" style={{ color: '#e7e2da' }}>CEEDed</p>
-          <p className="text-sm mb-6" style={{ color: '#d4c5a9' }}>Clarity over complexity. Systems that serve people. </p>
-          <p className="text-sm mb-6 font-semibold" style={{ color: '#e7e2da' }}>Based in South Africa 🇿🇦</p>
+          <p className="font-semibold mb-2" style={{ color: '#e7e2da' }}>CEEDed — Simple systems for growing businesses.</p>
+          <p className="text-sm mb-6" style={{ color: '#d4c5a9' }}>Clarity over complexity. Systems that serve people. 🇿🇦</p>
+          <p className="text-sm mb-6 font-semibold" style={{ color: '#e7e2da' }}>Based in South Africa</p>
 
           <div className="flex justify-center gap-6 mb-6 flex-wrap">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:scale-110 text-sm font-medium flex items-center gap-2" style={{ color: '#a8b598' }}>
@@ -265,7 +240,7 @@ export default function Home() {
             </a>
           </div>
 
-          <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved.</p>
+          <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦</p>
         </div>
       </footer>
     </div>

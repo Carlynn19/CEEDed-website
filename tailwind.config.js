@@ -8,16 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: '#121212',
-        charcoal: '#1E1E1E',
-        bone: '#F5F2EC',
-        offWhite: '#FAF8F3',
-        textDark: '#1A1A1A',
-        textGrey: '#6F6F6F',
-        borderGrey: '#D6D6D6',
-        accent: '#00E5C4',
-        accentLime: '#B6F300',
-        accentBlue: '#3B5BFF',
+        darkCharcoal: '#3b3d3f',
+        sageGreen: '#a8b598',
+        oliveGreen: '#768760',
+        lightSage: '#c5d1ba',
+        darkGray: '#2a2c2e',
+        mediumGray: '#4a4d4f',
+        warmBeige: '#e7e2da',
+        paleGold: '#d4c5a9',
+        deepGreen: '#5a6b4d',
+        mintGreen: '#b8c9a8',
+        slate: '#525456',
       },
       animation: {
         fadeIn: 'fadeIn 0.6s ease-in-out',
