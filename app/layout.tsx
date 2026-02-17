@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} antialiased tracking-wide`}>{children}</body>
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+      <body className={`${inter.className} antialiased tracking-wide bg-dark text-white`}>{children}</body>
     </html>
   )
 }

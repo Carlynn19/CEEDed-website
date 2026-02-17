@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Zap, Calendar, CreditCard, Layout, Check, Shield, Lightbulb, Target } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -134,7 +135,7 @@ export default function Products() {
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
-              CEEDed Signature Offer
+              Signature Offer
             </h1>
           </AnimatedSection>
           <AnimatedSection animation="fade-up" delay={100}>
@@ -175,12 +176,12 @@ export default function Products() {
             </p>
           </AnimatedSection>
           <AnimatedSection animation="fade-up" delay={400}>
-            <a
+            <Link
               href="/contact"
               className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
             >
               Learn more
-            </a>
+            </Link>
           </AnimatedSection>
         </div>
       </section>
@@ -240,12 +241,12 @@ export default function Products() {
               <p className="text-lg text-gray-dark mb-6 leading-relaxed">
                 We'll build a package based on your specific needs and budget. No hidden fees, no surprises.
               </p>
-              <a
+              <Link
                 href="/contact"
                 className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
               >
                 Get your quote
-              </a>
+              </Link>
             </div>
           </AnimatedSection>
         </div>
@@ -263,12 +264,12 @@ export default function Products() {
             </h2>
           </AnimatedSection>
           <AnimatedSection animation="fade-up" delay={200}>
-            <a
+            <Link
               href="/contact"
               className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
             >
               Start the conversation
-            </a>
+            </Link>
           </AnimatedSection>
         </div>
       </section>

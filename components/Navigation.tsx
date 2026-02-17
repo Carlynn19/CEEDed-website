@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
 interface NavigationProps {
@@ -22,7 +23,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
     <header className="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md bg-dark/50 shadow-lg">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         <div className="flex items-center">
-          <a href="/" className="transition-all hover:scale-105 mt-6">
+          <Link href="/" className="transition-all hover:scale-105 mt-6">
             <Image
               src="/logo4.png"
               alt="CEEDed"
@@ -31,7 +32,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
               className="h-56 w-auto object-contain"
               priority
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -39,7 +40,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
           {navItems.map((item) => {
             const isActive = currentPath === item.href
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 ${
@@ -47,17 +48,17 @@ export default function Navigation({ currentPath }: NavigationProps) {
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             )
           })}
         </div>
 
-        <a
+        <Link
           href="/contact"
           className="hidden md:block px-4 py-2 rounded-2xl text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg bg-primary hover:bg-primary-dark text-white"
         >
           Let's chat
-        </a>
+        </Link>
 
         {/* Mobile Menu */}
         <button

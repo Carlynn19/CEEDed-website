@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight, Zap, Calendar, CreditCard, Search, Settings, Rocket } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -88,18 +89,18 @@ export default function Home() {
               </AnimatedSection>
               <AnimatedSection animation="fade-up" delay={300}>
                 <div className="flex flex-col sm:flex-row gap-6">
-                  <a
+                  <Link
                     href="/contact"
                     className="px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl text-center bg-primary hover:bg-primary-dark text-white"
                   >
                     Let's chat
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/products"
                     className="px-8 py-3 rounded-2xl font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2 text-primary hover:bg-primary/10 backdrop-blur-sm"
                   >
                     See our products <ArrowRight size={20} />
-                  </a>
+                  </Link>
                 </div>
               </AnimatedSection>
           </div>
@@ -127,12 +128,12 @@ export default function Home() {
           <AnimatedSection animation="fade-up" delay={400}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl p-20 text-center leading-tight text-white">
               If yes, let's get you{' '}
-              <a
+              <Link
                 href="/products"
                 className="transition-all hover:scale-105 inline-block bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent decoration-primary"
               >
                 CEEDed
-              </a>
+              </Link>
             </h2>
           </AnimatedSection>
         </div>
