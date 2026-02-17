@@ -9,8 +9,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'CEEDed — Simple systems for growing businesses',
-  description: 'A small digital studio helping service-based entrepreneurs bring structure to their businesses. Enquiry flows, booking, payments, and clarity—without the complexity.',
+  title: 'CEEDed',
+  description: 'A small digital studio helping entrepreneurs bring structure to their businesses.',
 }
 
 export const viewport = {

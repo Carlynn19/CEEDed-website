@@ -115,7 +115,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatabilityCards.map((card, index) => (
               <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-                <div className="p-10 rounded-lg text-center bg-dark-3 card-hover">
+                <div className="p-8 rounded-lg text-center bg-dark-3 card-hover h-full flex flex-col items-center justify-center min-h-[280px] gap-4">
+                  <div className="w-full h-32 bg-dark-2 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-dark text-sm">Image</span>
+                  </div>
                   <p className="text-lg font-medium text-white">{card}</p>
                 </div>
               </AnimatedSection>
@@ -123,14 +126,13 @@ export default function Home() {
           </div>
           <AnimatedSection animation="fade-up" delay={400}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl p-20 text-center leading-tight text-white">
-              If this feels too familiar, let's get you{' '}
+              If yes, let's get you{' '}
               <a
                 href="/products"
-                className="transition-all hover:scale-105 inline-block bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent underline decoration-primary"
+                className="transition-all hover:scale-105 inline-block bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent decoration-primary"
               >
                 CEEDed
               </a>
-              .
             </h2>
           </AnimatedSection>
         </div>

@@ -6,9 +6,9 @@ export default function Footer() {
   return (
     <footer className="text-center py-12 relative overflow-hidden bg-dark">
       <div className="max-w-6xl mx-auto px-4">
-        <p className="font-semibold mb-2 text-white">CEEDed — Simple systems for growing businesses.</p>
-        <p className="text-sm mb-6 text-gray-dark">Clarity over complexity. Systems that serve people. 🇿🇦</p>
-        <p className="text-sm mb-6 font-semibold text-white">Based in South Africa</p>
+        <p className="font-semibold mb-2 text-white">CEEDed</p>
+        <p className="text-sm mb-6 text-gray-dark">Systems that serve people.</p>
+        <p className="text-sm mb-6 font-semibold text-white">Based in South Africa 🇿🇦</p>
 
         <div className="flex justify-center gap-6 mb-6 flex-wrap">
           <a
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-body">
-          &copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦
+          &copy; {new Date().getFullYear()} CEEDed. All rights reserved.
         </p>
       </div>
     </footer>
