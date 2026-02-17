@@ -2,41 +2,43 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Menu, X, ArrowRight, Instagram, Facebook, Mail } from 'lucide-react'
+import { Menu, X, Instagram, Facebook, Mail } from 'lucide-react'
+import ScrollToTop from '@/components/ScrollToTop'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export default function Products() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const currentPath = '/products'
 
   // Start Smaller cards
   const startSmallerCards = [
-    {
-      title: 'ENQUIRY FLOW AUDIT',
-      description: 'We look at how you currently receive enquiries, identify gaps, and suggest quick wins to make it smoother.',
-    },
-    {
-      title: 'INTAKE FORM SETUP',
-      description: 'Stop manually asking clients the same 10 questions—get a branded form that captures what you need upfront.',
-    },
-    {
-      title: 'SIMPLE BOOKING LINK',
-      description: 'Let clients book directly via a calendar link. No back-and-forth. Just available slots and done.',
-    },
+    'Enquiry flow',
+    'Booking setup',
+    'Payment setup',
+    'Landing page',
+  ]
+
+  // Why CEEDed bullets
+  const whyCeededPoints = [
+    'No tech overwhelm',
+    'Built for entrepreneurs',
+    'Right-sized solutions',
+    'Simplicity',
   ]
 
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #3b3d3f 0%, #2a2c2e 50%, #3b3d3f 100%)', color: '#e7e2da' }}>
       {/* Header */}
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 backdrop-blur-sm`} style={{ background: 'linear-gradient(90deg, rgba(59, 61, 63, 0.95) 0%, rgba(74, 77, 79, 0.95) 100%)', borderColor: '#a8b598' }}>
-        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <a href="/">
+            <a href="/" className="transition-all hover:scale-105 p-2 rounded-lg" style={{ background: 'rgba(168, 181, 152, 0.1)' }}>
               <Image
                 src="/logo_only_nobackground.png"
                 alt="CEEDed"
-                width={80}
-                height={80}
-                className="h-12 w-auto object-contain"
+                width={120}
+                height={120}
+                className="h-16 w-auto object-contain"
                 priority
               />
             </a>
@@ -49,23 +51,29 @@ export default function Products() {
               { label: 'Our Products', href: '/products' },
               { label: 'Who We Are', href: '/about' },
               { label: 'Contact Us', href: '/contact' },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition-all text-sm font-medium hover:scale-105"
-                style={{ color: '#e7e2da' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-              >
-                {item.label}
-              </a>
-            ))}
+            ].map((item) => {
+              const isActive = currentPath === item.href
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${isActive ? 'border-b-2' : ''}`}
+                  style={{
+                    color: isActive ? '#a8b598' : '#e7e2da',
+                    borderColor: isActive ? '#a8b598' : 'transparent'
+                  }}
+                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </div>
 
           <a
             href="/contact"
-            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg"
+            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2"
             style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
           >
             Let's chat
@@ -73,9 +81,10 @@ export default function Products() {
 
           {/* Mobile Menu */}
           <button
-            className="md:hidden transition-transform hover:scale-110"
+            className="md:hidden transition-transform hover:scale-110 focus:outline-none focus:ring-2 rounded"
             style={{ color: '#e7e2da' }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -90,18 +99,25 @@ export default function Products() {
                 { label: 'Our Products', href: '/products' },
                 { label: 'Who We Are', href: '/about' },
                 { label: 'Contact Us', href: '/contact' },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block w-full text-left text-sm font-medium py-2 transition-all hover:translate-x-2"
-                  style={{ color: '#e7e2da' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-                >
-                  {item.label}
-                </a>
-              ))}
+              ].map((item) => {
+                const isActive = currentPath === item.href
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block w-full text-left text-sm font-medium py-2 px-3 rounded transition-all hover:translate-x-2 focus:outline-none focus:ring-2 ${isActive ? 'bg-opacity-10' : ''}`}
+                    style={{
+                      color: isActive ? '#a8b598' : '#e7e2da',
+                      backgroundColor: isActive ? 'rgba(168, 181, 152, 0.1)' : 'transparent'
+                    }}
+                    onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                    onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                  >
+                    {item.label}
+                  </a>
+                )
+              })}
             </div>
           </div>
         )}
@@ -159,32 +175,50 @@ export default function Products() {
       <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-center" style={{ color: '#e7e2da' }}>Start simple. Grow later.</h2>
-          <p className="text-lg sm:text-xl mb-12 text-center leading-relaxed max-w-3xl mx-auto" style={{ color: '#d4c5a9' }}>
-            Not ready for the full package? These standalone setups give you quick structure where you need it most.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {startSmallerCards.map((card, index) => (
               <div
                 key={index}
-                className="p-8 rounded-lg transition-all hover:translate-y-[-4px] animate-fadeInUp"
+                className="p-8 rounded-lg text-center transition-all hover:scale-105 animate-fadeInUp"
                 style={{
                   background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
                   border: '2px solid #a8b598',
-                  animationDelay: `${index * 0.15}s`
+                  animationDelay: `${index * 0.1}s`
                 }}
               >
-                <h3 className="text-xl font-bold mb-4" style={{ color: '#a8b598' }}>{card.title}</h3>
-                <p className="text-base leading-relaxed" style={{ color: '#d4c5a9' }}>{card.description}</p>
+                <p className="text-lg font-semibold" style={{ color: '#a8b598' }}>{card}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Why CEEDed Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(90deg, #2a2c2e 0%, #3b3d3f 50%, #2a2c2e 100%)' }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center" style={{ color: '#e7e2da' }}>Why founders choose us</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {whyCeededPoints.map((point, index) => (
+              <div
+                key={index}
+                className="p-8 rounded-lg text-center transition-all hover:scale-105 animate-fadeInUp"
+                style={{
+                  background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
+                  border: '2px solid #a8b598',
+                  animationDelay: `${index * 0.1}s`
+                }}
+              >
+                <p className="text-xl font-semibold" style={{ color: '#e7e2da' }}>{point}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Final CTA */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative" style={{ background: 'linear-gradient(90deg, #2a2c2e 0%, #3b3d3f 50%, #2a2c2e 100%)' }}>
+      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
         <div className="max-w-4xl mx-auto">
+          <p className="text-xl sm:text-2xl mb-4" style={{ color: '#a8b598' }}>Ready for more clarity?</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: '#e7e2da' }}>
             Let's build something simple. Something CEEDed.
           </h2>
@@ -243,6 +277,10 @@ export default function Products() {
           <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦</p>
         </div>
       </footer>
+
+      {/* Navigation Enhancements */}
+      <ScrollProgress />
+      <ScrollToTop />
     </div>
   )
 }

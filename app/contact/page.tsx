@@ -3,15 +3,17 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Menu, X, Instagram, Facebook, Mail } from 'lucide-react'
+import ScrollToTop from '@/components/ScrollToTop'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export default function Contact() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const currentPath = '/contact'
   const [formData, setFormData] = useState({
     name: '',
-    businessName: '',
     email: '',
-    phone: '',
-    challenge: '',
+    building: '',
+    messy: '',
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -26,7 +28,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
-    setFormData({ name: '', businessName: '', email: '', phone: '', challenge: '' })
+    setFormData({ name: '', email: '', building: '', messy: '' })
     setFormSubmitted(true)
     setTimeout(() => setFormSubmitted(false), 3000)
   }
@@ -35,15 +37,15 @@ export default function Contact() {
     <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #3b3d3f 0%, #2a2c2e 50%, #3b3d3f 100%)', color: '#e7e2da' }}>
       {/* Header */}
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 backdrop-blur-sm`} style={{ background: 'linear-gradient(90deg, rgba(59, 61, 63, 0.95) 0%, rgba(74, 77, 79, 0.95) 100%)', borderColor: '#a8b598' }}>
-        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <a href="/">
+            <a href="/" className="transition-all hover:scale-105 p-2 rounded-lg" style={{ background: 'rgba(168, 181, 152, 0.1)' }}>
               <Image
                 src="/logo_only_nobackground.png"
                 alt="CEEDed"
-                width={80}
-                height={80}
-                className="h-12 w-auto object-contain"
+                width={120}
+                height={120}
+                className="h-16 w-auto object-contain"
                 priority
               />
             </a>
@@ -56,23 +58,29 @@ export default function Contact() {
               { label: 'Our Products', href: '/products' },
               { label: 'Who We Are', href: '/about' },
               { label: 'Contact Us', href: '/contact' },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition-all text-sm font-medium hover:scale-105"
-                style={{ color: '#e7e2da' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-              >
-                {item.label}
-              </a>
-            ))}
+            ].map((item) => {
+              const isActive = currentPath === item.href
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${isActive ? 'border-b-2' : ''}`}
+                  style={{
+                    color: isActive ? '#a8b598' : '#e7e2da',
+                    borderColor: isActive ? '#a8b598' : 'transparent'
+                  }}
+                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </div>
 
           <a
             href="/contact"
-            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg"
+            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2"
             style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
           >
             Let's chat
@@ -80,9 +88,10 @@ export default function Contact() {
 
           {/* Mobile Menu */}
           <button
-            className="md:hidden transition-transform hover:scale-110"
+            className="md:hidden transition-transform hover:scale-110 focus:outline-none focus:ring-2 rounded"
             style={{ color: '#e7e2da' }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -97,18 +106,25 @@ export default function Contact() {
                 { label: 'Our Products', href: '/products' },
                 { label: 'Who We Are', href: '/about' },
                 { label: 'Contact Us', href: '/contact' },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block w-full text-left text-sm font-medium py-2 transition-all hover:translate-x-2"
-                  style={{ color: '#e7e2da' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-                >
-                  {item.label}
-                </a>
-              ))}
+              ].map((item) => {
+                const isActive = currentPath === item.href
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block w-full text-left text-sm font-medium py-2 px-3 rounded transition-all hover:translate-x-2 focus:outline-none focus:ring-2 ${isActive ? 'bg-opacity-10' : ''}`}
+                    style={{
+                      color: isActive ? '#a8b598' : '#e7e2da',
+                      backgroundColor: isActive ? 'rgba(168, 181, 152, 0.1)' : 'transparent'
+                    }}
+                    onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                    onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                  >
+                    {item.label}
+                  </a>
+                )
+              })}
             </div>
           </div>
         )}
@@ -149,25 +165,6 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="businessName" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
-                Business Name
-              </label>
-              <input
-                type="text"
-                id="businessName"
-                name="businessName"
-                value={formData.businessName}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 rounded transition-all focus:outline-none focus:ring-2"
-                style={{
-                  background: 'rgba(74, 77, 79, 0.5)',
-                  border: '2px solid #a8b598',
-                  color: '#e7e2da',
-                }}
-              />
-            </div>
-
-            <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
                 Email *
               </label>
@@ -188,16 +185,17 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
-                Phone
+              <label htmlFor="building" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
+                What are you building? *
               </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
+              <textarea
+                id="building"
+                name="building"
+                value={formData.building}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 rounded transition-all focus:outline-none focus:ring-2"
+                required
+                rows={3}
+                className="w-full px-4 py-3 rounded transition-all focus:outline-none focus:ring-2 resize-none"
                 style={{
                   background: 'rgba(74, 77, 79, 0.5)',
                   border: '2px solid #a8b598',
@@ -207,16 +205,16 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="challenge" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
-                What's your biggest challenge right now? *
+              <label htmlFor="messy" className="block text-sm font-medium mb-2" style={{ color: '#e7e2da' }}>
+                Where do things feel messy right now? *
               </label>
               <textarea
-                id="challenge"
-                name="challenge"
-                value={formData.challenge}
+                id="messy"
+                name="messy"
+                value={formData.messy}
                 onChange={handleInputChange}
                 required
-                rows={5}
+                rows={4}
                 className="w-full px-4 py-3 rounded transition-all focus:outline-none focus:ring-2 resize-none"
                 style={{
                   background: 'rgba(74, 77, 79, 0.5)',
@@ -231,7 +229,7 @@ export default function Contact() {
               className="w-full px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl"
               style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
             >
-              Send Message
+              Let's simplify it
             </button>
 
             {formSubmitted && (
@@ -269,6 +267,10 @@ export default function Contact() {
           <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦</p>
         </div>
       </footer>
+
+      {/* Navigation Enhancements */}
+      <ScrollProgress />
+      <ScrollToTop />
     </div>
   )
 }

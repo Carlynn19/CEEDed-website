@@ -3,39 +3,26 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Menu, X, Instagram, Facebook, Mail } from 'lucide-react'
+import ScrollToTop from '@/components/ScrollToTop'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export default function About() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  // Our Edge points
-  const ourEdgePoints = [
-    {
-      title: "No upselling",
-      description: "We'll tell you what you actually need — even if that means a smaller project.",
-    },
-    {
-      title: "Simple setups",
-      description: "We use tools that make sense, not tools that make us look fancy.",
-    },
-    {
-      title: "Real support",
-      description: "We don't disappear after delivery. You get walk-throughs, documentation, and follow-up.",
-    },
-  ]
+  const currentPath = '/about'
 
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #3b3d3f 0%, #2a2c2e 50%, #3b3d3f 100%)', color: '#e7e2da' }}>
       {/* Header */}
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 backdrop-blur-sm`} style={{ background: 'linear-gradient(90deg, rgba(59, 61, 63, 0.95) 0%, rgba(74, 77, 79, 0.95) 100%)', borderColor: '#a8b598' }}>
-        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <a href="/">
+            <a href="/" className="transition-all hover:scale-105 p-2 rounded-lg" style={{ background: 'rgba(168, 181, 152, 0.1)' }}>
               <Image
                 src="/logo_only_nobackground.png"
                 alt="CEEDed"
-                width={80}
-                height={80}
-                className="h-12 w-auto object-contain"
+                width={120}
+                height={120}
+                className="h-16 w-auto object-contain"
                 priority
               />
             </a>
@@ -48,23 +35,29 @@ export default function About() {
               { label: 'Our Products', href: '/products' },
               { label: 'Who We Are', href: '/about' },
               { label: 'Contact Us', href: '/contact' },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition-all text-sm font-medium hover:scale-105"
-                style={{ color: '#e7e2da' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-              >
-                {item.label}
-              </a>
-            ))}
+            ].map((item) => {
+              const isActive = currentPath === item.href
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${isActive ? 'border-b-2' : ''}`}
+                  style={{
+                    color: isActive ? '#a8b598' : '#e7e2da',
+                    borderColor: isActive ? '#a8b598' : 'transparent'
+                  }}
+                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </div>
 
           <a
             href="/contact"
-            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg"
+            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2"
             style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
           >
             Let's chat
@@ -72,9 +65,10 @@ export default function About() {
 
           {/* Mobile Menu */}
           <button
-            className="md:hidden transition-transform hover:scale-110"
+            className="md:hidden transition-transform hover:scale-110 focus:outline-none focus:ring-2 rounded"
             style={{ color: '#e7e2da' }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -89,18 +83,25 @@ export default function About() {
                 { label: 'Our Products', href: '/products' },
                 { label: 'Who We Are', href: '/about' },
                 { label: 'Contact Us', href: '/contact' },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block w-full text-left text-sm font-medium py-2 transition-all hover:translate-x-2"
-                  style={{ color: '#e7e2da' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#a8b598'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#e7e2da'}
-                >
-                  {item.label}
-                </a>
-              ))}
+              ].map((item) => {
+                const isActive = currentPath === item.href
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block w-full text-left text-sm font-medium py-2 px-3 rounded transition-all hover:translate-x-2 focus:outline-none focus:ring-2 ${isActive ? 'bg-opacity-10' : ''}`}
+                    style={{
+                      color: isActive ? '#a8b598' : '#e7e2da',
+                      backgroundColor: isActive ? 'rgba(168, 181, 152, 0.1)' : 'transparent'
+                    }}
+                    onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
+                    onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
+                  >
+                    {item.label}
+                  </a>
+                )
+              })}
             </div>
           </div>
         )}
@@ -122,42 +123,41 @@ export default function About() {
           <h2 className="text-4xl sm:text-5xl font-bold mb-8" style={{ color: '#e7e2da' }}>The story</h2>
           <div className="space-y-6 text-lg sm:text-xl leading-relaxed" style={{ color: '#d4c5a9' }}>
             <p>
-              CEEDed was created for people buidling meaningful businesses, often from stratch, ofthen while wearing too many hats.
+              CEEDed was created for people building meaningful businesses, often from scratch, often while wearing too many hats.
             </p>
             <p>
               We saw a pattern.
             </p>
             <p>
-              Talented entrepreneurs doing great work...
+              Talented entrepreneurs doing great work…
             </p>
-              Held back by messy admin, scattered tools, and constant mental load. 
+            <p>
+              Held back by messy admin, scattered tools, and constant mental load.
+            </p>
+            <p>
               Not because they lacked ambition. Because they lacked structure.
+            </p>
+            <p>
               So we built CEEDed.
+            </p>
+            <p>
               A simple studio focused on helping entrepreneurs move from chaos to clarity, without the overwhelm that comes with going digital.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Our Edge Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(90deg, #2a2c2e 0%, #3b3d3f 50%, #2a2c2e 100%)' }}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center" style={{ color: '#e7e2da' }}>Our edge</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {ourEdgePoints.map((point, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-lg transition-all hover:translate-y-[-4px] animate-fadeInUp"
-                style={{
-                  background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
-                  border: '2px solid #a8b598',
-                  animationDelay: `${index * 0.15}s`
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-4" style={{ color: '#a8b598' }}>{point.title}</h3>
-                <p className="text-base leading-relaxed" style={{ color: '#d4c5a9' }}>{point.description}</p>
-              </div>
-            ))}
-          </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-8" style={{ color: '#e7e2da' }}>Our edge</h2>
+          <p className="text-2xl sm:text-3xl mb-4 font-semibold" style={{ color: '#a8b598' }}>We sit between:</p>
+          <p className="text-xl sm:text-2xl mb-8 leading-relaxed" style={{ color: '#d4c5a9' }}>
+            DIY chaos and Overpriced agencies
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed" style={{ color: '#d4c5a9' }}>
+            Offering something intentional: <span style={{ color: '#a8b598', fontWeight: '600' }}>Focused digital foundations for growing businesses.</span>
+          </p>
         </div>
       </section>
 
@@ -165,12 +165,28 @@ export default function About() {
       <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-bold mb-8" style={{ color: '#e7e2da' }}>Who we work with</h2>
-          <p className="text-lg sm:text-xl leading-relaxed mb-6" style={{ color: '#d4c5a9' }}>
-            We're built for service-based businesses and consultants in South Africa (and beyond) who are past the "winging it" stage but not quite ready for full-scale automation or custom software.
-          </p>
-          <p className="text-lg sm:text-xl leading-relaxed" style={{ color: '#d4c5a9' }}>
-            If you're spending more time managing tools than serving clients—or if you know your setup should be smoother but don't know where to start—you're in the right place.
-          </p>
+          <ul className="space-y-4 text-lg sm:text-xl" style={{ color: '#d4c5a9' }}>
+            <li className="flex items-start gap-3">
+              <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+              <span>Solo founders</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+              <span>Creatives</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+              <span>Service providers</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+              <span>Coaches and consultants</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
+              <span>Early-stage brands</span>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -209,6 +225,10 @@ export default function About() {
           <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦</p>
         </div>
       </footer>
+
+      {/* Navigation Enhancements */}
+      <ScrollProgress />
+      <ScrollToTop />
     </div>
   )
 }
