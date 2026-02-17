@@ -1,282 +1,292 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { Menu, X, Instagram, Facebook, Mail } from 'lucide-react'
+import { Zap, Calendar, CreditCard, Layout, Check, Shield, Lightbulb, Target } from 'lucide-react'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import ScrollProgress from '@/components/ScrollProgress'
+import AnimatedSection from '@/components/AnimatedSection'
+import FeatureCard from '@/components/FeatureCard'
+import TabSystem, { type Tab } from '@/components/TabSystem'
 
 export default function Products() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const currentPath = '/products'
 
-  // Start Smaller cards
+  // Start Smaller cards with icons
   const startSmallerCards = [
-    'Enquiry flow',
-    'Booking setup',
-    'Payment setup',
-    'Landing page',
+    { icon: Zap, title: 'Enquiry flow', description: 'Capture leads professionally' },
+    { icon: Calendar, title: 'Booking setup', description: 'Automated scheduling' },
+    { icon: CreditCard, title: 'Payment setup', description: 'Streamlined invoicing' },
+    { icon: Layout, title: 'Landing page', description: 'Professional web presence' },
   ]
 
-  // Why CEEDed bullets
-  const whyCeededPoints = [
-    'No tech overwhelm',
-    'Built for entrepreneurs',
-    'Right-sized solutions',
-    'Simplicity',
+  // Why CEEDed tabs
+  const whyCeededTabs: Tab[] = [
+    {
+      id: 'no-overwhelm',
+      label: 'No tech overwhelm',
+      content: (
+        <div className="text-left space-y-4">
+          <p className="text-lg text-gray-dark leading-relaxed">
+            We translate your business needs into the right tools, configured the right way. No jargon, no endless options—just clear, functional systems that work for you.
+          </p>
+          <ul className="space-y-2 text-gray-dark">
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Plain language explanations, not technical manuals</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>We handle the setup, you focus on your work</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Support when you need it, not when you don't</span>
+            </li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'built-for-entrepreneurs',
+      label: 'Built for entrepreneurs',
+      content: (
+        <div className="text-left space-y-4">
+          <p className="text-lg text-gray-dark leading-relaxed">
+            We understand you're not a corporation. You need systems that fit your reality—flexible, affordable, and built for how you actually work.
+          </p>
+          <ul className="space-y-2 text-gray-dark">
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Designed for solo founders and small teams</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Scalable as you grow, not before you need it</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Built around your existing workflow</span>
+            </li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'right-sized',
+      label: 'Right-sized solutions',
+      content: (
+        <div className="text-left space-y-4">
+          <p className="text-lg text-gray-dark leading-relaxed">
+            Not too basic, not overcomplicated. We build what you need now, with room to grow when you're ready—nothing more, nothing less.
+          </p>
+          <ul className="space-y-2 text-gray-dark">
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>No feature bloat or unnecessary complexity</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Start small, add more as you need it</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Pay for what you use, not enterprise features</span>
+            </li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'simplicity',
+      label: 'Simplicity',
+      content: (
+        <div className="text-left space-y-4">
+          <p className="text-lg text-gray-dark leading-relaxed">
+            Simple doesn't mean basic. It means intentional—every part serves a purpose, and everything just makes sense. That's how good systems should feel.
+          </p>
+          <ul className="space-y-2 text-gray-dark">
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Intuitive interfaces that don't need training</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Clear workflows that reduce mental load</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+              <span>Less time managing tools, more time on your business</span>
+            </li>
+          </ul>
+        </div>
+      )
+    }
   ]
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #3b3d3f 0%, #2a2c2e 50%, #3b3d3f 100%)', color: '#e7e2da' }}>
-      {/* Header */}
-      <header className={`sticky top-0 z-50 border-b transition-all duration-300 backdrop-blur-sm`} style={{ background: 'linear-gradient(90deg, rgba(59, 61, 63, 0.95) 0%, rgba(74, 77, 79, 0.95) 100%)', borderColor: '#a8b598' }}>
-        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <a href="/" className="transition-all hover:scale-105 p-2 rounded-lg" style={{ background: 'rgba(168, 181, 152, 0.1)' }}>
-              <Image
-                src="/logo_only_nobackground.png"
-                alt="CEEDed"
-                width={120}
-                height={120}
-                className="h-16 w-auto object-contain"
-                priority
-              />
-            </a>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
-            {[
-              { label: 'Home', href: '/' },
-              { label: 'Our Products', href: '/products' },
-              { label: 'Who We Are', href: '/about' },
-              { label: 'Contact Us', href: '/contact' },
-            ].map((item) => {
-              const isActive = currentPath === item.href
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${isActive ? 'border-b-2' : ''}`}
-                  style={{
-                    color: isActive ? '#a8b598' : '#e7e2da',
-                    borderColor: isActive ? '#a8b598' : 'transparent'
-                  }}
-                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
-                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
-                >
-                  {item.label}
-                </a>
-              )
-            })}
-          </div>
-
-          <a
-            href="/contact"
-            className="hidden md:block px-4 py-2 rounded text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2"
-            style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
-          >
-            Let's chat
-          </a>
-
-          {/* Mobile Menu */}
-          <button
-            className="md:hidden transition-transform hover:scale-110 focus:outline-none focus:ring-2 rounded"
-            style={{ color: '#e7e2da' }}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </nav>
-
-        {/* Mobile Menu Items */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t animate-fadeInDown" style={{ borderColor: '#a8b598', background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
-            <div className="px-4 py-4 space-y-3">
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'Our Products', href: '/products' },
-                { label: 'Who We Are', href: '/about' },
-                { label: 'Contact Us', href: '/contact' },
-              ].map((item) => {
-                const isActive = currentPath === item.href
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block w-full text-left text-sm font-medium py-2 px-3 rounded transition-all hover:translate-x-2 focus:outline-none focus:ring-2 ${isActive ? 'bg-opacity-10' : ''}`}
-                    style={{
-                      color: isActive ? '#a8b598' : '#e7e2da',
-                      backgroundColor: isActive ? 'rgba(168, 181, 152, 0.1)' : 'transparent'
-                    }}
-                    onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#a8b598' }}
-                    onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#e7e2da' }}
-                  >
-                    {item.label}
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </header>
+    <div className="min-h-screen bg-dark">
+      <Navigation currentPath={currentPath} />
 
       {/* Signature Offer Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #2a2c2e 0%, #3b3d3f 30%, #4a4d4f 60%, #3b3d3f 100%)' }}>
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #a8b598 0%, transparent 50%), radial-gradient(circle at 80% 50%, #768760 0%, transparent 50%)' }}></div>
+      <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-32 relative overflow-hidden bg-dark">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,_rgba(48,86,211,0.15)_0%,_transparent_50%),radial-gradient(circle_at_80%_50%,_rgba(74,108,247,0.1)_0%,_transparent_50%)]"></div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fadeInUp" style={{ color: '#e7e2da' }}>
-            CEEDed Signature Offer
-          </h1>
-          <p className="text-xl sm:text-2xl mb-8 leading-relaxed animate-fadeInUp" style={{ color: '#d4c5a9', animationDelay: '0.1s' }}>
-            Your complete digital foundation, designed to make your business run smoother behind the scenes.
-          </p>
-          <div className="text-left max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-            <h2 className="text-2xl font-bold mb-6" style={{ color: '#a8b598' }}>What you get:</h2>
-            <ul className="space-y-4 text-lg" style={{ color: '#d4c5a9' }}>
-              <li className="flex items-start gap-3">
-                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
-                <span>A full enquiry flow — from first contact to onboarding</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
-                <span>Intake forms and automated booking</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
-                <span>Payment links, invoicing, or basic client portals</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
-                <span>Simple client management so nothing slips through the cracks</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span style={{ color: '#a8b598', fontSize: '24px' }}>•</span>
-                <span>Integration of what you already use (where possible)</span>
-              </li>
-            </ul>
-          </div>
-          <p className="text-xl mb-8 font-semibold animate-fadeInUp" style={{ color: '#e7e2da', animationDelay: '0.3s' }}>
-            This is designed for service-based businesses, consultants, and solo founders who need solid structure without the complexity.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl animate-fadeInUp"
-            style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e', animationDelay: '0.4s' }}
-          >
-            Learn more
-          </a>
+          <AnimatedSection animation="fade-up">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+              CEEDed Signature Offer
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <p className="text-xl sm:text-2xl mb-8 leading-relaxed text-gray-dark">
+              Your complete digital foundation, designed to make your business run smoother behind the scenes.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={200}>
+            <div className="text-left max-w-3xl mx-auto mb-10">
+              <h2 className="text-2xl font-bold mb-6 text-primary">What you get:</h2>
+              <ul className="space-y-4 text-lg text-gray-dark">
+                <li className="flex items-start gap-3">
+                  <Check className="text-accent mt-1 flex-shrink-0" size={24} />
+                  <span>A full enquiry flow — from first contact to onboarding</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="text-accent mt-1 flex-shrink-0" size={24} />
+                  <span>Intake forms and automated booking</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="text-accent mt-1 flex-shrink-0" size={24} />
+                  <span>Payment links, invoicing, or basic client portals</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="text-accent mt-1 flex-shrink-0" size={24} />
+                  <span>Simple client management so nothing slips through the cracks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="text-accent mt-1 flex-shrink-0" size={24} />
+                  <span>Integration of what you already use (where possible)</span>
+                </li>
+              </ul>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={300}>
+            <p className="text-xl mb-8 font-semibold text-white">
+              This is designed for service-based businesses, consultants, and solo founders who need solid structure without the complexity.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={400}>
+            <a
+              href="/contact"
+              className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
+            >
+              Learn more
+            </a>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Start Smaller Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
+      <section className="px-4 sm:px-6 lg:px-8 py-20 relative bg-dark">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-center" style={{ color: '#e7e2da' }}>Start simple. Grow later.</h2>
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-center text-white">Start simple. Grow later.</h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <p className="text-lg sm:text-xl mb-12 text-center leading-relaxed text-gray-dark">
+              Not ready for the full package? Build modularly with individual services.
+            </p>
+          </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {startSmallerCards.map((card, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-lg text-center transition-all hover:scale-105 animate-fadeInUp"
-                style={{
-                  background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
-                  border: '2px solid #a8b598',
-                  animationDelay: `${index * 0.1}s`
-                }}
-              >
-                <p className="text-lg font-semibold" style={{ color: '#a8b598' }}>{card}</p>
-              </div>
+              <AnimatedSection key={index} animation="fade-up" delay={(index + 1) * 100}>
+                <div className="p-8 rounded-lg text-center bg-dark-3  card-hover">
+                  <card.icon className="w-10 h-10 mx-auto mb-4 text-primary" />
+                  <p className="text-lg font-semibold mb-2 text-white">{card.title}</p>
+                  <p className="text-sm text-gray-dark">{card.description}</p>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why CEEDed Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 relative" style={{ background: 'linear-gradient(90deg, #2a2c2e 0%, #3b3d3f 50%, #2a2c2e 100%)' }}>
+      {/* Why CEEDed Section with Tabs */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 relative bg-dark">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center" style={{ color: '#e7e2da' }}>Why founders choose us</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {whyCeededPoints.map((point, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-lg text-center transition-all hover:scale-105 animate-fadeInUp"
-                style={{
-                  background: 'linear-gradient(135deg, #4a4d4f 0%, #3b3d3f 100%)',
-                  border: '2px solid #a8b598',
-                  animationDelay: `${index * 0.1}s`
-                }}
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-white">Why founders choose us</h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <TabSystem tabs={whyCeededTabs} defaultTab="no-overwhelm" />
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Pricing Preview */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 relative bg-dark">
+        <div className="max-w-2xl mx-auto text-center">
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">Simple, transparent pricing</h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <p className="text-lg sm:text-xl mb-10 leading-relaxed text-gray-dark">
+              Every business is different. Let's talk about what you actually need.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection animation="scale" delay={200}>
+            <div className="p-10 rounded-lg bg-dark-3 card-hover-lift">
+              <Shield className="w-16 h-16 mx-auto mb-6 text-primary" />
+              <h3 className="text-2xl font-bold mb-4 text-white">Custom Quote</h3>
+              <p className="text-lg text-gray-dark mb-6 leading-relaxed">
+                We'll build a package based on your specific needs and budget. No hidden fees, no surprises.
+              </p>
+              <a
+                href="/contact"
+                className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
               >
-                <p className="text-xl font-semibold" style={{ color: '#e7e2da' }}>{point}</p>
-              </div>
-            ))}
-          </div>
+                Get your quote
+              </a>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
+      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative bg-dark">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xl sm:text-2xl mb-4" style={{ color: '#a8b598' }}>Ready for more clarity?</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: '#e7e2da' }}>
-            Let's build something simple. Something CEEDed.
-          </h2>
-          <a
-            href="/contact"
-            className="inline-block px-8 py-3 rounded font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl"
-            style={{ background: 'linear-gradient(135deg, #a8b598 0%, #768760 100%)', color: '#2a2c2e' }}
-          >
-            Start the conversation
-          </a>
+          <AnimatedSection animation="fade-up">
+            <p className="text-xl sm:text-2xl mb-4 text-primary">Ready for more clarity?</p>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={100}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight text-white">
+              Let's build something simple. Something CEEDed.
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={200}>
+            <a
+              href="/contact"
+              className="inline-block px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl bg-primary hover:bg-primary-dark text-white"
+            >
+              Start the conversation
+            </a>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Brand Signature */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative" style={{ background: 'linear-gradient(180deg, #3b3d3f 0%, #2a2c2e 100%)' }}>
+      <section className="px-4 sm:px-6 lg:px-8 py-20 text-center relative bg-dark">
         <div className="max-w-4xl mx-auto">
-          <p className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed" style={{ color: '#e7e2da' }}>
-            <span
-              className="transition-all hover:scale-105 inline-block"
-              style={{
-                background: 'linear-gradient(135deg, #a8b598 0%, #c5d1ba 50%, #768760 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              So your business runs, not just you.
-            </span>
-          </p>
+          <AnimatedSection animation="scale">
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed">
+              <span className="transition-all hover:scale-105 inline-block bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
+                So your business runs, not just you.
+              </span>
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center py-12 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #2a2c2e 0%, #1a1c1e 100%)', borderTop: '2px solid #a8b598' }}>
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(45deg, #a8b598 25%, transparent 25%, transparent 75%, #a8b598 75%), linear-gradient(45deg, #a8b598 25%, transparent 25%, transparent 75%, #a8b598 75%)', backgroundSize: '20px 20px', backgroundPosition: '0 0, 10px 10px' }}></div>
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <p className="font-semibold mb-2" style={{ color: '#e7e2da' }}>CEEDed — Simple systems for growing businesses.</p>
-          <p className="text-sm mb-6" style={{ color: '#d4c5a9' }}>Clarity over complexity. Systems that serve people. 🇿🇦</p>
-          <p className="text-sm mb-6 font-semibold" style={{ color: '#e7e2da' }}>Based in South Africa</p>
-
-          <div className="flex justify-center gap-6 mb-6 flex-wrap">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:scale-110 text-sm font-medium flex items-center gap-2" style={{ color: '#a8b598' }}>
-              <Instagram size={18} /> Instagram
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:scale-110 text-sm font-medium flex items-center gap-2" style={{ color: '#a8b598' }}>
-              <Facebook size={18} /> Facebook
-            </a>
-            <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:scale-110 text-sm font-medium" style={{ color: '#a8b598' }}>
-              Fiverr
-            </a>
-            <a href="mailto:hello@ceeded.co.za" className="transition-all hover:scale-110 text-sm font-medium flex items-center gap-2" style={{ color: '#a8b598' }}>
-              <Mail size={18} /> Email
-            </a>
-          </div>
-
-          <p className="text-sm" style={{ color: '#768760' }}>&copy; {new Date().getFullYear()} CEEDed. All rights reserved. | Based in South Africa 🇿🇦</p>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Navigation Enhancements */}
       <ScrollProgress />
