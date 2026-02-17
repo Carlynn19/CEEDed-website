@@ -14,12 +14,12 @@ import TestimonialCarousel, { type Testimonial } from '@/components/TestimonialC
 export default function Home() {
   const currentPath = '/'
 
-  // Relatability cards
+  // Relatability cards with images
   const relatabilityCards = [
-    'Everything lives in DMs',
-    'You\'re the admin system',
-    'Too many tools',
-    'No clear flow',
+    { text: 'Everything lives in DMs', image: '/Everything_lives_in_DMs.png' },
+    { text: 'You\'re the admin system', image: '/Youre_the_admin.png' },
+    { text: 'Too many tools', image: '/Too_many_tools.png' },
+    { text: 'No clear flow', image: '/No_clear_flow.png' },
   ]
 
   // How It Works steps
@@ -116,11 +116,17 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatabilityCards.map((card, index) => (
               <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-                <div className="p-8 rounded-lg text-center bg-dark-3 card-hover h-full flex flex-col items-center justify-center min-h-[280px] gap-4">
-                  <div className="w-full h-32 bg-dark-2 rounded-lg flex items-center justify-center">
-                    <span className="text-gray-dark text-sm">Image</span>
+                <div className="relative rounded-lg overflow-hidden card-hover h-full min-h-[280px] group">
+                  <Image
+                    src={card.image}
+                    alt={card.text}
+                    width={400}
+                    height={280}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-dark/30 backdrop-blur-sm py-4">
+                    <p className="text-lg font-semibold text-white text-center">{card.text}</p>
                   </div>
-                  <p className="text-lg font-medium text-white">{card}</p>
                 </div>
               </AnimatedSection>
             ))}
