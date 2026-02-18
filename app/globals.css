@@ -218,6 +218,24 @@ body {
   transform-style: preserve-3d;
 }
 
+.card img {
+  filter: brightness(1.08) contrast(1.05) saturate(1.05);
+}
+
+.card {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.card-title {
+  color: rgba(255,255,255,0.95);
+  letter-spacing: 0.02em;
+}
+
+.section-cta {
+  margin-top: 120px;
+  letter-spacing: -0.01em;
+}
+
 .card-hover-lift:hover {
   transform: translateY(-12px) rotateX(2deg);
   box-shadow: 0 25px 50px -12px rgba(36, 130, 50, 0.25);

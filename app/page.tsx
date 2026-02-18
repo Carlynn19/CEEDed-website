@@ -118,15 +118,15 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatabilityCards.map((card, index) => (
               <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-                <div className="relative rounded-lg overflow-hidden card-hover card-image h-full min-h-[280px] group">
+                <div className="relative rounded-lg overflow-hidden card-hover h-full min-h-[280px] group shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition">
                   <Image
                     src={card.image}
                     alt={card.text}
                     width={400}
                     height={280}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover brightness-105 contrast-105 saturate-105"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-dark/30 backdrop-blur-sm py-4">
+                  <div className="absolute inset-x-0 bottom-0 backdrop-blur-sm py-4 bg-black/35">
                     <p className="text-lg font-semibold text-white text-center">{card.text}</p>
                   </div>
                 </div>
