@@ -113,7 +113,7 @@ export default function Home() {
       <section id="relatable" className="px-4 sm:px-6 lg:px-8 py-20 relative bg-dark">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection animation="fade-down">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-20 text-center text-white">Sound familiar?</h2>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-20 text-center text-white">This might feel familiar?</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatabilityCards.map((card, index) => (
