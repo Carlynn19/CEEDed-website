@@ -67,24 +67,25 @@ export default function Home() {
       <Navigation currentPath={currentPath} />
 
       {/* Hero Section */}
-      <section id="hero" className="px-4 sm:px-6 lg:px-8 py-20 sm:py-32 relative overflow-hidden bg-dark">
+      <section id="hero" className="px-4 sm:px-6 lg:px-8 py-20 sm:py-32 relative overflow-hidden bg-dark" style={{ paddingTop: '100px' }}>
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{ backgroundImage: "url('/hero-image.png')" }}></div>
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,_rgba(36,130,50,0.15)_0%,_transparent_50%),radial-gradient(circle_at_80%_50%,_rgba(43,168,74,0.1)_0%,_transparent_50%)]"></div>
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,_rgba(36,130,50,0.15)_0%,_transparent_50%),radial-gradient(circle_at_80%_50%,_rgba(43,168,74,0.1)_0%,_transparent_50%)]]"></div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.4))' }}></div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-center" style={{ gap: '12px' }}>
               <AnimatedSection animation="fade-up">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight text-white" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)' }}>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-white" style={{ letterSpacing: '-0.01em', lineHeight: '0.95', textShadow: '0 6px 12px rgba(0,0,0,0.1)' }}>
                   Your business shouldn't feel this messy.
                 </h1>
               </AnimatedSection>
               <AnimatedSection animation="fade-up" delay={100}>
-                <p className="text-xl sm:text-2xl mb-10 font-semibold text-primary-light" style={{ textShadow: '0 3px 6px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)' }}>
-                  You've outgrown the chaos.
+                <p className="text-xl sm:text-2xl mb-10" style={{ color: '#27AE60', fontWeight: '500', letterSpacing: '0.01em', textShadow: '0 3px 6px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)' }}>
+                  We help businesses get found, take enquiries, manage bookings, and get paid.
                 </p>
               </AnimatedSection>
               <AnimatedSection animation="fade-up" delay={200}>
-                <p className="text-lg sm:text-xl mb-16 leading-relaxed text-white" style={{ textShadow: '0 3px 6px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)' }}>
-                  We help you replace scattered tools and constant admin with simple structure that just works.
+                <p className="text-lg sm:text-xl mb-16 leading-relaxed text-white" style={{ opacity: '0.9', marginTop: '12px', textShadow: '0 3px 6px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)' }}>
+                  One clean setup. Built to grow with you.
                 </p>
               </AnimatedSection>
               <AnimatedSection animation="fade-up" delay={300}>
@@ -93,15 +94,16 @@ export default function Home() {
                     href="/contact"
                     className="px-8 py-3 rounded-2xl font-semibold gradient-button transition-all hover:scale-105 hover:shadow-2xl text-center bg-primary hover:bg-primary-dark text-white"
                   >
-                    Let's chat
+                    Start a project
                   </Link>
                   <Link
                     href="/products"
                     className="px-8 py-3 rounded-2xl font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2 text-primary hover:bg-primary/10 backdrop-blur-sm"
                   >
-                    See our products <ArrowRight size={20} />
+                    See the system <ArrowRight size={20} />
                   </Link>
                 </div>
+                <p className="text-sm text-gray-400 mt-6" style={{ opacity: '0.85', letterSpacing: '0.03em' }}>Built for modern small businesses</p>
               </AnimatedSection>
           </div>
         </div>
@@ -116,7 +118,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatabilityCards.map((card, index) => (
               <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-                <div className="relative rounded-lg overflow-hidden card-hover h-full min-h-[280px] group">
+                <div className="relative rounded-lg overflow-hidden card-hover card-image h-full min-h-[280px] group">
                   <Image
                     src={card.image}
                     alt={card.text}

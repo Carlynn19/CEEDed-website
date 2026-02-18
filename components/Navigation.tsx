@@ -10,10 +10,9 @@ interface NavigationProps {
 }
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Our Products', href: '/products' },
-  { label: 'Who We Are', href: '/about' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'System', href: '/' },
+  { label: 'Modules', href: '/products' },
+  { label: 'About', href: '/about' },
 ]
 
 export default function Navigation({ currentPath }: NavigationProps) {
@@ -36,7 +35,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-24">
           {navItems.map((item) => {
             const isActive = currentPath === item.href
             return (
@@ -44,7 +43,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
                 key={item.href}
                 href={item.href}
                 className={`transition-all text-sm font-medium hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 ${
-                  isActive ? 'border-b-2 border-primary text-primary' : 'text-white hover:text-primary'
+                  isActive ? 'border-b-2 border-primary text-primary opacity-100' : 'text-white opacity-80 hover:opacity-100 hover:text-primary'
                 }`}
               >
                 {item.label}
@@ -57,7 +56,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
           href="/contact"
           className="hidden md:block px-4 py-2 rounded-2xl text-sm font-semibold gradient-button transition-all hover:scale-105 hover:shadow-lg bg-primary hover:bg-primary-dark text-white"
         >
-          Let's chat
+          Start a project
         </Link>
 
         {/* Mobile Menu */}
